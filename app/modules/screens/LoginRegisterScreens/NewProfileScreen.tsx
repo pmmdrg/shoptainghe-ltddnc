@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-const HomeScreen = () => {
+const NewProfileScreen = () => {
   return (
     <View>
-      <Text>HomeScreen</Text>
+      <Text>NewProfileScreen</Text>
     </View>
   );
 };
 
-export default HomeScreen;
+export default NewProfileScreen;

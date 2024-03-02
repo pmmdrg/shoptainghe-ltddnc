@@ -1,15 +1,13 @@
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RealmProvider } from '@realm/react';
 
-import LoginScreen from './app/modules/screens/LoginScreen';
-import HomeScreen from './app/modules/screens/HomeScreen';
+import LoginScreen from './app/modules/screens/LoginRegisterScreens/LoginScreen';
+import HomeScreen from './app/modules/screens/HomeScreens/HomeScreen';
+import RegisterScreen from './app/modules/screens/LoginRegisterScreens/RegisterScreen';
+
+import { UserInfo } from './app/models/UserInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,16 +30,19 @@ function App(): React.JSX.Element {
           component={LoginScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen
+          name='Register'
+          component={RegisterScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='Home'
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;

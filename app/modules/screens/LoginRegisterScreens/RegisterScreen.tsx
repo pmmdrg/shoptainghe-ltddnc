@@ -8,26 +8,29 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { buttonColors, inputColors, textColors } from '../../assets/colors';
+import {
+  backgroundColor,
+  borderColor,
+  buttonColors,
+  textColors,
+} from '../../../assets/colors';
 
-const LoginScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [isEmailFocused, setIsEmailFocused] = useState(false);
-  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+
+  const handleContinue = () => {};
 
   const handleLogin = () => {
-    navigation.navigate('Home');
+    navigation.navigate('Login');
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <Text style={styles.title}>
-          Chào mừng bạn trở lại với Shop Tai nghe
-        </Text>
+        <Text style={styles.title}>Đăng ký tài khoản</Text>
         <Text style={styles.description}>
-          Vui lòng điền các thông tin đăng nhập cần thiết.
+          Nhập địa chỉ email để đăng ký tài khoản.
         </Text>
         <Text style={styles.label}>Email</Text>
         <TextInput
@@ -41,36 +44,17 @@ const LoginScreen = ({ navigation }) => {
             isEmailFocused ? [styles.input, styles.inputFocused] : styles.input
           }
         />
-        <Text style={styles.label}>Mật khẩu</Text>
-        <TextInput
-          placeholder='Mật khẩu'
-          value={password}
-          onFocus={() => setIsPasswordFocused(true)}
-          onBlur={() => setIsPasswordFocused(false)}
-          onChangeText={(text) => setPassword(text)}
-          style={
-            isPasswordFocused
-              ? [styles.input, styles.inputFocused]
-              : styles.input
-          }
-        />
         <TouchableOpacity
-          style={
-            email !== '' && password !== ''
-              ? styles.loginButton
-              : styles.buttonDisabled
-          }
-          disabled={email !== '' && password !== '' ? false : true}
-          onPress={handleLogin}
+          style={email !== '' ? styles.continueButton : styles.buttonDisabled}
+          disabled={email !== '' ? false : true}
+          onPress={handleContinue}
         >
-          <Text style={styles.buttonText}>Đăng nhập</Text>
+          <Text style={styles.buttonText}>Tiếp tục</Text>
         </TouchableOpacity>
-        <View style={styles.forgotSignUpContainer}>
-          <TouchableOpacity style={styles.buttonForgot}>
-            <Text style={styles.forgotText}>Quên mật khẩu?</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonSignUp}>
-            <Text style={styles.signUpText}>Đăng ký</Text>
+        <View style={styles.signInContainer}>
+          <Text style={styles.description}>Đã có tài khoản?</Text>
+          <TouchableOpacity style={styles.buttonSignIn} onPress={handleLogin}>
+            <Text style={styles.signInText}>Đăng nhập</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -84,9 +68,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 16,
   },
-  forgotSignUpContainer: {
+  signInContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginVertical: 50,
   },
   title: {
@@ -104,9 +88,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     color: textColors.primaryText,
+    marginTop: 20,
   },
   input: {
-    backgroundColor: inputColors.backgroundColor,
+    backgroundColor: backgroundColor.secondaryBackground,
     paddingHorizontal: 20,
     fontSize: 14,
     fontWeight: 'bold',
@@ -116,9 +101,9 @@ const styles = StyleSheet.create({
   },
   inputFocused: {
     borderWidth: 1,
-    borderColor: inputColors.borderColor,
+    borderColor: borderColor.primaryBorder,
   },
-  loginButton: {
+  continueButton: {
     backgroundColor: buttonColors.loginButton,
     alignItems: 'center',
     paddingVertical: 15,
@@ -132,13 +117,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 30,
   },
-  buttonForgot: {
+  buttonSignIn: {
     backgroundColor: buttonColors.transparentButton,
-    paddingRight: 20,
-  },
-  buttonSignUp: {
-    backgroundColor: buttonColors.transparentButton,
-    paddingLeft: 20,
+    paddingLeft: 4,
   },
   text: {
     fontSize: 14,
@@ -148,16 +129,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-  forgotText: {
-    color: textColors.primaryText,
-    fontWeight: 'bold',
-    paddingVertical: 20,
-  },
-  signUpText: {
+  signInText: {
     color: textColors.blueText,
     fontWeight: 'bold',
     paddingVertical: 20,
+    fontSize: 16,
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;

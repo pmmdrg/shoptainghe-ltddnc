@@ -2,11 +2,7 @@ const textColors: Record<string, string> = {
     primaryText: '#0c1a30',
     secondaryText: '#838589',
     blueText: '#3669c9',
-}
-
-const inputColors: Record<string, string> = {
-    backgroundColor: '#fafafa',
-    borderColor: '#ededed',
+    redText: '#fe3a30'
 }
 
 const buttonColors: Record<string, string> = {
@@ -15,4 +11,18 @@ const buttonColors: Record<string, string> = {
     transparentButton: 'transparent',
 }
 
-export {textColors, inputColors, buttonColors}
+const backgroundColor: Record<string, string> = {
+    primaryBackground: '#ffffff',
+    secondaryBackground: '#fafafa',
+    transparentBackground: 'transparent',
+}
+
+const shadowColor: Record<string, string> = {
+    primaryShadow: '#333333'
+}
+
+const borderColor: Record<string, string> = {
+    primaryBorder: '#ededed'
+}
+
+export {textColors, borderColor, buttonColors, backgroundColor, shadowColor}
