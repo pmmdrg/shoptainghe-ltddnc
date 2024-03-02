@@ -9,10 +9,14 @@ import {
   TextInput,
 } from 'react-native';
 
-import { backgroundColor, borderColor, textColors } from '../../assets/colors';
+import {
+  backgroundColor,
+  borderColor,
+  textColors,
+} from '../../../assets/colors';
 
-import HomeSection from '../components/HomeSection';
-import NavigationItem from '../components/NavigationItem';
+import HomeSection from '../../components/HomeSection';
+import NavigationItem from '../../components/NavigationItem';
 
 enum sectionType {
   category,
@@ -26,21 +30,35 @@ const data = [
   {
     id: 1,
     name: 'Headphone',
-    price: 100,
+    price: 500000,
     rate: 4.5,
     rateCount: 80,
   },
   {
     id: 2,
     name: 'Headphone',
-    price: 100,
+    price: 500000,
     rate: 4.5,
     rateCount: 80,
   },
   {
     id: 3,
     name: 'Headphone',
-    price: 100,
+    price: 500000,
+    rate: 4.5,
+    rateCount: 80,
+  },
+  {
+    id: 4,
+    name: 'Headphone',
+    price: 500000,
+    rate: 4.5,
+    rateCount: 80,
+  },
+  {
+    id: 5,
+    name: 'Headphone',
+    price: 500000,
     rate: 4.5,
     rateCount: 80,
   },

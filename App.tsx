@@ -3,9 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RealmProvider } from '@realm/react';
 
-import LoginScreen from './app/modules/screens/LoginScreen';
-import HomeScreen from './app/modules/screens/HomeScreen';
-import RegisterScreen from './app/modules/screens/RegisterScreen';
+import LoginScreen from './app/modules/screens/LoginRegisterScreens/LoginScreen';
+import HomeScreen from './app/modules/screens/HomeScreens/HomeScreen';
+import RegisterScreen from './app/modules/screens/LoginRegisterScreens/RegisterScreen';
 
 import { UserInfo } from './app/models/UserInfo';
 
