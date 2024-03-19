@@ -2,10 +2,14 @@ import { useState } from "react";
 import {
   View,
   Text,
-  SafeAreaView,
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Platform,
+  Keyboard,
+  ScrollView,
 } from "react-native";
 
 import {
@@ -14,6 +18,7 @@ import {
   buttonColors,
   textColors,
 } from "../../../assets/colors";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -29,84 +34,96 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Text style={styles.title}>
-          Chào mừng bạn trở lại với Shop Tai nghe
-        </Text>
-        <Text style={styles.description}>
-          Vui lòng điền các thông tin đăng nhập cần thiết.
-        </Text>
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          keyboardType="email-address"
-          inputMode="email"
-          placeholder="Địa chỉ email"
-          value={email}
-          onFocus={() => setIsEmailFocused(true)}
-          onBlur={() => setIsEmailFocused(false)}
-          onChangeText={(text) => setEmail(text)}
-          style={
-            isEmailFocused ? [styles.input, styles.inputFocused] : styles.input
-          }
-        />
-        <Text style={styles.label}>Mật khẩu</Text>
-        <TextInput
-          placeholder="Mật khẩu"
-          secureTextEntry={true}
-          value={password}
-          onFocus={() => setIsPasswordFocused(true)}
-          onBlur={() => setIsPasswordFocused(false)}
-          onChangeText={(text) => setPassword(text)}
-          style={
-            isPasswordFocused
-              ? [styles.input, styles.inputFocused]
-              : styles.input
-          }
-        />
-        <TouchableOpacity
-          style={
-            email !== "" && password !== ""
-              ? styles.loginButton
-              : styles.buttonDisabled
-          }
-          disabled={email !== "" && password !== "" ? false : true}
-          onPress={handleLogin}
-        >
-          <Text style={styles.buttonText}>Đăng nhập</Text>
-        </TouchableOpacity>
-        <View style={styles.forgotSignUpContainer}>
-          <TouchableOpacity style={styles.buttonForgot}>
-            <Text style={styles.forgotText}>Quên mật khẩu?</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonSignUp} onPress={handleSignUp}>
-            <Text style={styles.signUpText}>Đăng ký</Text>
-          </TouchableOpacity>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <SafeAreaView>
+            <Text style={styles.title}>
+              Chào mừng bạn trở lại với Shop Tai nghe
+            </Text>
+            <Text style={styles.description}>
+              Vui lòng điền các thông tin đăng nhập cần thiết.
+            </Text>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              keyboardType="email-address"
+              inputMode="email"
+              placeholder="Địa chỉ email"
+              value={email}
+              onFocus={() => setIsEmailFocused(true)}
+              onBlur={() => setIsEmailFocused(false)}
+              onChangeText={(text) => setEmail(text)}
+              style={
+                isEmailFocused
+                  ? [styles.input, styles.inputFocused]
+                  : styles.input
+              }
+            />
+            <Text style={styles.label}>Mật khẩu</Text>
+            <TextInput
+              placeholder="Mật khẩu"
+              secureTextEntry={true}
+              value={password}
+              onFocus={() => setIsPasswordFocused(true)}
+              onBlur={() => setIsPasswordFocused(false)}
+              onChangeText={(text) => setPassword(text)}
+              style={
+                isPasswordFocused
+                  ? [styles.input, styles.inputFocused]
+                  : styles.input
+              }
+            />
+            <TouchableOpacity
+              style={
+                email !== "" && password !== ""
+                  ? styles.loginButton
+                  : styles.buttonDisabled
+              }
+              disabled={email !== "" && password !== "" ? false : true}
+              onPress={handleLogin}
+            >
+              <Text style={styles.buttonText}>Đăng nhập</Text>
+            </TouchableOpacity>
+            <View style={styles.forgotSignUpContainer}>
+              <TouchableOpacity style={styles.buttonForgot}>
+                <Text style={styles.forgotText}>Quên mật khẩu?</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonSignUp}
+                onPress={handleSignUp}
+              >
+                <Text style={styles.signUpText}>Đăng ký</Text>
+              </TouchableOpacity>
+            </View>
+          </SafeAreaView>
         </View>
-      </View>
-    </SafeAreaView>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
     backgroundColor: "white",
     padding: 16,
   },
   forgotSignUpContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginVertical: 50,
+    marginTop: 30,
   },
   title: {
     fontWeight: "bold",
     fontSize: 32,
-    marginTop: 120,
     color: textColors.primaryText,
   },
   description: {
-    fontSize: 16,
+    fontSize: 15,
     paddingVertical: 20,
     color: textColors.secondaryText,
   },
@@ -133,14 +150,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 15,
     borderRadius: 10,
-    marginVertical: 30,
+    marginTop: 20,
   },
   buttonDisabled: {
     backgroundColor: buttonColors.disabledButton,
     alignItems: "center",
     paddingVertical: 15,
     borderRadius: 10,
-    marginTop: 30,
+    marginTop: 20,
   },
   buttonForgot: {
     backgroundColor: buttonColors.transparentButton,
