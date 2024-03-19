@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   View,
   Text,
@@ -6,26 +6,26 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 
 import {
   backgroundColor,
   borderColor,
   buttonColors,
   textColors,
-} from '../../../assets/colors';
+} from "../../../assets/colors";
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   const handleLogin = () => {
-    navigation.navigate('Home');
+    navigation.navigate("Home");
   };
   const handleSignUp = () => {
-    navigation.navigate('Register');
+    navigation.navigate("Register");
   };
 
   return (
@@ -39,8 +39,9 @@ const LoginScreen = ({ navigation }) => {
         </Text>
         <Text style={styles.label}>Email</Text>
         <TextInput
-          inputMode='email'
-          placeholder='Địa chỉ email'
+          keyboardType="email-address"
+          inputMode="email"
+          placeholder="Địa chỉ email"
           value={email}
           onFocus={() => setIsEmailFocused(true)}
           onBlur={() => setIsEmailFocused(false)}
@@ -51,7 +52,8 @@ const LoginScreen = ({ navigation }) => {
         />
         <Text style={styles.label}>Mật khẩu</Text>
         <TextInput
-          placeholder='Mật khẩu'
+          placeholder="Mật khẩu"
+          secureTextEntry={true}
           value={password}
           onFocus={() => setIsPasswordFocused(true)}
           onBlur={() => setIsPasswordFocused(false)}
@@ -64,11 +66,11 @@ const LoginScreen = ({ navigation }) => {
         />
         <TouchableOpacity
           style={
-            email !== '' && password !== ''
+            email !== "" && password !== ""
               ? styles.loginButton
               : styles.buttonDisabled
           }
-          disabled={email !== '' && password !== '' ? false : true}
+          disabled={email !== "" && password !== "" ? false : true}
           onPress={handleLogin}
         >
           <Text style={styles.buttonText}>Đăng nhập</Text>
@@ -89,16 +91,16 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 16,
   },
   forgotSignUpContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginVertical: 50,
   },
   title: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 32,
     marginTop: 120,
     color: textColors.primaryText,
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
     color: textColors.secondaryText,
   },
   label: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 20,
     color: textColors.primaryText,
   },
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColor.secondaryBackground,
     paddingHorizontal: 20,
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     height: 50,
     borderRadius: 10,
     marginVertical: 20,
@@ -128,14 +130,14 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     backgroundColor: buttonColors.loginButton,
-    alignItems: 'center',
+    alignItems: "center",
     paddingVertical: 15,
     borderRadius: 10,
     marginVertical: 30,
   },
   buttonDisabled: {
     backgroundColor: buttonColors.disabledButton,
-    alignItems: 'center',
+    alignItems: "center",
     paddingVertical: 15,
     borderRadius: 10,
     marginTop: 30,
@@ -153,17 +155,17 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 14,
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
   forgotText: {
     color: textColors.primaryText,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingVertical: 20,
   },
   signUpText: {
     color: textColors.blueText,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingVertical: 20,
   },
 });
